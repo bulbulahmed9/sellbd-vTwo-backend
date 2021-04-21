@@ -19,6 +19,9 @@ app.use(morgan("dev"))
 // base route
 app.get("/", (req, res) => res.json({ message: "Working" }));
 
+// others routes
+app.use("/", require("./routes/userRoutes"))
+
 // Error Handling
 app.use((req, res, next) => {
   const error = new Error("Not Found");
