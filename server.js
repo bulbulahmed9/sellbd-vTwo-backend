@@ -2,6 +2,7 @@ const express = require("express");
 const morgan = require('morgan')
 const cors = require('cors')
 require('dotenv').config()
+require('express-async-errors');
 
 // initialize app
 const app = express();
@@ -33,6 +34,7 @@ app.use((error, req, res, next) => {
   res
     .status(error.status || 500)
     .json({ message: error.message || "Something went wrong" });
+    next(error)
 });
 
 // start server

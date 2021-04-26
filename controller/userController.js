@@ -1,9 +1,8 @@
-const asyncHandler = require("express-async-handler");
 const User = require("../model/userModel");
 const bcrypt = require("bcrypt");
 const sendEmail = require("../utils");
 
-const registerController = asyncHandler(async (req, res) => {
+const registerController = async (req, res) => {
   // destructure fields
   const { name, email, password, phone } = req.body;
 
@@ -33,7 +32,7 @@ const registerController = asyncHandler(async (req, res) => {
     user.verificationCode = hashCode;
     await user.save();
 
-   return res.status(201).json({
+    return res.status(201).json({
       email: user.email,
       message:
         "You are already registered, check your email for new verification code",
@@ -63,6 +62,6 @@ const registerController = asyncHandler(async (req, res) => {
     email,
     message: "Please check your email and verify your account",
   });
-});
+};
 
 module.exports = { registerController };
