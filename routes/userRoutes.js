@@ -1,11 +1,18 @@
 const router = require("express").Router();
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
-const { registerController } = require("../controller/userController");
-const { validateUser } = require("../middleware/userValidator");
+const { registerController, verifyController , loginController} = require("../controller/userController");
 
 // register user
 // access : public
-router.post("/api/user/register", validateUser, registerController);
+router.post("/api/user/register", registerController);
+
+
+// verify user after register
+// access : public
+router.post("/api/user/verify", verifyController)
+
+
+// Login user
+// access : public
+router.post("/api/user/login", loginController)
 
 module.exports = router;
