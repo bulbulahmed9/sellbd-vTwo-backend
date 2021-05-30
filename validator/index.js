@@ -13,12 +13,12 @@ const registerSchema = joi.object({
 
 const verifySchema = joi.object({
   email: joi.string().trim().required().email({ minDomainSegments: 2 }),
-  code : joi.string().required().min(6)
-})
+  code: joi.string().required().min(6),
+});
 
 const loginSchema = joi.object({
   email: joi.string().trim().required().email({ minDomainSegments: 2 }),
-  password : joi.string().required().min(6)
-})
+  password: joi.string().required().min(6),
+});
 
 module.exports = { registerSchema, verifySchema, loginSchema };
